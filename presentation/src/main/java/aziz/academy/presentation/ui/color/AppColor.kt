@@ -11,3 +11,7 @@ val Gray = Color(0xFF2D2D2D)
 
 val GraySemiTransparent = Color(0x48828282)
 val BackgroundColor = Color(0xFFFFFFFF)
+
+val TextSecondary = Color(0xFF727272)
+val TextPrimary = Color(0xFF343434)
+val TextBold = Color(0xFF000000)
