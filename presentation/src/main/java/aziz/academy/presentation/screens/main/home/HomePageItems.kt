@@ -1,6 +1,7 @@
 package aziz.academy.presentation.screens.main.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,7 +26,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import aziz.academy.presentation.R
@@ -36,14 +36,17 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 
 @Composable
-fun CourseItem(image: String, title: String, description: String) {
+fun CourseItem(onItemClicked: () -> Unit, image: String, title: String, description: String) {
 
     Card(
         modifier = Modifier
             .height(168.dp)
             .width(189.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(Color.White),
+            .background(Color.White)
+            .clickable {
+                onItemClicked.invoke()
+            },
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         )
@@ -107,15 +110,6 @@ fun CourseItem(image: String, title: String, description: String) {
     }
 }
 
-@Preview
-@Composable
-private fun CourseItemPreview() {
-    CourseItem(
-        image = "",
-        description = "Python",
-        title = "Developer"
-    )
-}
 
 @Composable
 fun CarouselItem(image: String) {

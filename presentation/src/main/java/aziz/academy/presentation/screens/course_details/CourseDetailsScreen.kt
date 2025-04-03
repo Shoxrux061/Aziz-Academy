@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import aziz.academy.presentation.R
 import aziz.academy.presentation.ui.color.BackgroundColor
 import aziz.academy.presentation.ui.color.TextPrimary
@@ -33,7 +34,7 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 
 @Composable
-fun CourseDetailsScreen(screenModel: CourseDetailsModel) {
+fun CourseDetailsScreen(navController: NavController, screenModel: CourseDetailsModel?) {
 
     val scrollState = rememberScrollState()
 
@@ -58,7 +59,7 @@ fun CourseDetailsScreen(screenModel: CourseDetailsModel) {
             SubcomposeAsyncImage(
                 modifier = Modifier.fillMaxSize(),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(screenModel.image)
+                    .data(screenModel?.image)
                     .crossfade(true)
                     .build(),
                 contentDescription = null,
@@ -73,7 +74,7 @@ fun CourseDetailsScreen(screenModel: CourseDetailsModel) {
         }
 
         Text(
-            text = screenModel.name,
+            text = screenModel?.name ?: "",
             fontSize = 20.sp,
             fontFamily = FontFamily(Font(R.font.poppins_bold)),
             color = ThemePrimary
@@ -82,7 +83,7 @@ fun CourseDetailsScreen(screenModel: CourseDetailsModel) {
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            text = screenModel.description,
+            text = screenModel?.description ?: "",
             color = TextPrimary,
             fontFamily = FontFamily(Font(R.font.poppins_regular)),
             fontSize = 14.sp,
@@ -91,7 +92,7 @@ fun CourseDetailsScreen(screenModel: CourseDetailsModel) {
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            text = "Kurs davomiyligi: ${screenModel.duration}"
+            text = "Kurs davomiyligi: ${screenModel?.duration}"
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -109,7 +110,7 @@ fun CourseDetailsScreen(screenModel: CourseDetailsModel) {
 
             Text(
                 modifier = Modifier.padding(vertical = 10.dp, horizontal = 15.dp),
-                text = screenModel.price,
+                text = screenModel?.price ?: "",
                 fontSize = 13.sp,
                 fontFamily = FontFamily(Font(R.font.poppins_regular))
             )
@@ -131,7 +132,7 @@ fun CourseDetailsScreen(screenModel: CourseDetailsModel) {
             fontSize = 12.sp,
             lineHeight = 20.sp,
             fontFamily = FontFamily(Font(R.font.poppins_regular)),
-            text = screenModel.description
+            text = screenModel?.description ?: ""
         )
     }
 }

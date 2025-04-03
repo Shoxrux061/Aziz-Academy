@@ -1,5 +1,7 @@
 package aziz.academy.presentation.screens.course_details
 
+import java.io.Serializable
+
 data class CourseDetailsModel(
 
     val name: String,
@@ -9,4 +11,4 @@ data class CourseDetailsModel(
     val info: String,
     val duration: String
 
-)
+) : Serializable

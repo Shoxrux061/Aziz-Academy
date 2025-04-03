@@ -1,8 +1,10 @@
 package aziz.academy.data.mapper
 
+import aziz.academy.data.dto.blog.BlogItemDto
 import aziz.academy.data.dto.carousel.CarouselItemDto
 import aziz.academy.data.dto.courses.BranchDto
 import aziz.academy.data.dto.courses.CourseDto
+import aziz.academy.domain.model.home.blog.BlogDataItem
 import aziz.academy.domain.model.home.carousel.CarouselItem
 import aziz.academy.domain.model.home.courses.Branch
 import aziz.academy.domain.model.home.courses.Course
@@ -37,5 +39,22 @@ fun CarouselItemDto.toDomain(): CarouselItem {
         carousel = this.carousel,
         id = this.id,
         order = this.order
+    )
+}
+
+fun BlogItemDto.toDomain(): BlogDataItem {
+
+    return BlogDataItem(
+        content = this.content,
+        slug = this.slug,
+        created_at = this.createdAt,
+        dislikes = this.dislikes,
+        likes = this.likes,
+        views = this.views,
+        excerpt = this.excerpt,
+        id = this.id,
+        image = this.image,
+        title = this.title,
+        updated_at = this.updatedAt
     )
 }

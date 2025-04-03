@@ -6,6 +6,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import aziz.academy.presentation.screens.main.blogs.BlogPageEvent
+import aziz.academy.presentation.screens.main.blogs.BlogPageViewModel
 import aziz.academy.presentation.screens.main.home.HomePageEvent
 import aziz.academy.presentation.screens.main.home.HomePageViewModel
 import aziz.academy.presentation.ui.components.BottomNavHost
@@ -19,8 +21,11 @@ fun MainScreen() {
 
     val homePageViewModel = hiltViewModel<HomePageViewModel>()
 
+    val blogViewModel = hiltViewModel<BlogPageViewModel>()
+
     LaunchedEffect(Unit) {
         homePageViewModel.sendEvent(HomePageEvent.FetchHomeData)
+        blogViewModel.sendEvent(BlogPageEvent.FetchBlogData)
     }
 
     Scaffold(
@@ -34,7 +39,8 @@ fun MainScreen() {
         BottomNavHost(
             paddingValues = paddingValues,
             navController = navController,
-            homePageViewModel = homePageViewModel
+            homePageViewModel = homePageViewModel,
+            blogPageViewModel = blogViewModel
         )
     }
 }

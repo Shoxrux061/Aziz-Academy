@@ -13,6 +13,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import aziz.academy.core.utils.NavRoutes
+import aziz.academy.presentation.screens.main.blogs.BlogPageViewModel
+import aziz.academy.presentation.screens.main.blogs.BlogsPage
 import aziz.academy.presentation.screens.main.home.CoursesPage
 import aziz.academy.presentation.screens.main.home.HomePageViewModel
 
@@ -20,7 +22,8 @@ import aziz.academy.presentation.screens.main.home.HomePageViewModel
 fun BottomNavHost(
     navController: NavHostController,
     paddingValues: PaddingValues,
-    homePageViewModel: HomePageViewModel
+    homePageViewModel: HomePageViewModel,
+    blogPageViewModel: BlogPageViewModel
 ) {
 
     NavHost(
@@ -43,13 +46,13 @@ fun BottomNavHost(
         }
     ) {
         composable(route = NavRoutes.ITEM_HOME_PAGE) {
-            CoursesPage(homePageViewModel)
+            CoursesPage(homePageViewModel, navController)
         }
         composable(route = NavRoutes.ITEM_RATING_PAGE) {
             Text("Rating")
         }
         composable(route = NavRoutes.ITEM_BLOG_PAGE) {
-            Text("Blog")
+            BlogsPage(navController, blogPageViewModel)
         }
         composable(route = NavRoutes.ITEM_PROFILE_PAGE) {
             Text("Profile")

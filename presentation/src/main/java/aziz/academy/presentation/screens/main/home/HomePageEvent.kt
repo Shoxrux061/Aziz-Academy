@@ -2,8 +2,6 @@ package aziz.academy.presentation.screens.main.home
 
 import androidx.compose.runtime.Immutable
 import aziz.academy.domain.model.home.HomePageModel
-import aziz.academy.domain.model.home.carousel.CarouselItem
-import aziz.academy.domain.model.home.courses.Course
 import aziz.academy.presentation.base.UiEvent
 
 @Immutable

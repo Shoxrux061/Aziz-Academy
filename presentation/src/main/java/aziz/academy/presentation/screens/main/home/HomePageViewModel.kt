@@ -46,5 +46,4 @@ class HomePageViewModel @Inject constructor(private val useCase: HomePageUseCase
             }
         }
     }
-
 }
