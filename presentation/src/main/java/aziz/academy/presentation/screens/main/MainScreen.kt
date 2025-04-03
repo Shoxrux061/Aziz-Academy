@@ -6,6 +6,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import aziz.academy.presentation.screens.course_details.CourseDataViewModel
 import aziz.academy.presentation.screens.main.blogs.BlogPageEvent
 import aziz.academy.presentation.screens.main.blogs.BlogPageViewModel
 import aziz.academy.presentation.screens.main.home.HomePageEvent
@@ -13,9 +14,10 @@ import aziz.academy.presentation.screens.main.home.HomePageViewModel
 import aziz.academy.presentation.ui.components.BottomNavHost
 import aziz.academy.presentation.ui.components.MyBottomNavigation
 
-@Preview(showBackground = true)
 @Composable
-fun MainScreen() {
+fun MainScreen(
+    courseDataViewModel: CourseDataViewModel
+) {
 
     val navController = rememberNavController()
 
@@ -40,7 +42,8 @@ fun MainScreen() {
             paddingValues = paddingValues,
             navController = navController,
             homePageViewModel = homePageViewModel,
-            blogPageViewModel = blogViewModel
+            blogPageViewModel = blogViewModel,
+            courseDataViewModel = courseDataViewModel
         )
     }
 }

@@ -28,13 +28,18 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import aziz.academy.core.utils.NavRoutes
 import aziz.academy.presentation.R
+import aziz.academy.presentation.screens.course_details.CourseDataViewModel
 import aziz.academy.presentation.screens.course_details.CourseDetailsModel
 import aziz.academy.presentation.ui.color.GraySemiTransparent
 import aziz.academy.presentation.ui.color.ThemePrimary
 import com.google.accompanist.pager.HorizontalPagerIndicator
 
 @Composable
-fun CoursesPage(viewModel: HomePageViewModel, navController: NavController) {
+fun CoursesPage(
+    viewModel: HomePageViewModel,
+    navController: NavController,
+    onNext: (screenModel: CourseDetailsModel) -> Unit
+) {
 
     val state = viewModel.state.collectAsState()
 
@@ -127,21 +132,19 @@ fun CoursesPage(viewModel: HomePageViewModel, navController: NavController) {
                         title = coursesData?.get(it)?.name ?: "unknown",
                         description = coursesData?.get(it)?.description ?: "unknown",
                         onItemClicked = {
-/*                            val itemData = state.value.homeData?.course?.get(it)
+
+
+                            val itemData = state.value.homeData?.course?.get(it)
 
                             val course = CourseDetailsModel(
                                 name = itemData?.name ?: "",
                                 description = itemData?.description ?: "",
-                                duration = itemData.toString(),
+                                duration = "${itemData?.durationInMonths} oy",
                                 info = itemData?.topics ?: "",
                                 image = itemData?.imageUrl ?: "",
-                                price = itemData?.monthlyFee ?: ""
+                                price = itemData?.monthlyFee+" so'm"
                             )
-                            navController.currentBackStackEntry?.savedStateHandle?.set(
-                                "course",
-                                course
-                            )
-                            navController.navigate(NavRoutes.DETAILS_SCREEN)*/
+                            onNext.invoke(course)
                         }
                     )
                 }

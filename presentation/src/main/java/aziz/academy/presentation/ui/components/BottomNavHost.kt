@@ -13,6 +13,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import aziz.academy.core.utils.NavRoutes
+import aziz.academy.presentation.screens.course_details.CourseDataViewModel
+import aziz.academy.presentation.screens.course_details.CourseDetailsScreen
 import aziz.academy.presentation.screens.main.blogs.BlogPageViewModel
 import aziz.academy.presentation.screens.main.blogs.BlogsPage
 import aziz.academy.presentation.screens.main.home.CoursesPage
@@ -23,7 +25,8 @@ fun BottomNavHost(
     navController: NavHostController,
     paddingValues: PaddingValues,
     homePageViewModel: HomePageViewModel,
-    blogPageViewModel: BlogPageViewModel
+    blogPageViewModel: BlogPageViewModel,
+    courseDataViewModel: CourseDataViewModel
 ) {
 
     NavHost(
@@ -33,20 +36,23 @@ fun BottomNavHost(
         navController = navController,
         startDestination = NavRoutes.ITEM_HOME_PAGE,
         enterTransition = {
-            fadeIn(animationSpec = tween(durationMillis = 250))
+            fadeIn(animationSpec = tween(durationMillis = 400))
         },
         exitTransition = {
-            fadeOut(animationSpec = tween(durationMillis = 250))
+            fadeOut(animationSpec = tween(durationMillis = 400))
         },
         popEnterTransition = {
-            fadeIn(animationSpec = tween(durationMillis = 250))
+            fadeIn(animationSpec = tween(durationMillis = 400))
         },
         popExitTransition = {
-            fadeOut(animationSpec = tween(durationMillis = 250))
+            fadeOut(animationSpec = tween(durationMillis = 400))
         }
     ) {
         composable(route = NavRoutes.ITEM_HOME_PAGE) {
-            CoursesPage(homePageViewModel, navController)
+            CoursesPage(homePageViewModel, navController, onNext = {
+                courseDataViewModel.updateCourseData(it)
+                navController.navigate(NavRoutes.DETAILS_SCREEN)
+            })
         }
         composable(route = NavRoutes.ITEM_RATING_PAGE) {
             Text("Rating")
@@ -56,6 +62,13 @@ fun BottomNavHost(
         }
         composable(route = NavRoutes.ITEM_PROFILE_PAGE) {
             Text("Profile")
+        }
+
+        composable(route = NavRoutes.DETAILS_SCREEN) {
+            CourseDetailsScreen(
+                courseDataViewModel = courseDataViewModel,
+                navController = navController
+            )
         }
     }
 }

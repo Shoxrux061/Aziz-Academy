@@ -34,7 +34,9 @@ import coil.compose.SubcomposeAsyncImage
 import coil.request.ImageRequest
 
 @Composable
-fun CourseDetailsScreen(navController: NavController, screenModel: CourseDetailsModel?) {
+fun CourseDetailsScreen(navController: NavController, courseDataViewModel: CourseDataViewModel) {
+
+    val screenModel = courseDataViewModel.courseData.value
 
     val scrollState = rememberScrollState()
 
@@ -59,7 +61,7 @@ fun CourseDetailsScreen(navController: NavController, screenModel: CourseDetails
             SubcomposeAsyncImage(
                 modifier = Modifier.fillMaxSize(),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(screenModel?.image)
+                    .data(screenModel.image)
                     .crossfade(true)
                     .build(),
                 contentDescription = null,
@@ -74,7 +76,7 @@ fun CourseDetailsScreen(navController: NavController, screenModel: CourseDetails
         }
 
         Text(
-            text = screenModel?.name ?: "",
+            text = screenModel.name,
             fontSize = 20.sp,
             fontFamily = FontFamily(Font(R.font.poppins_bold)),
             color = ThemePrimary
@@ -83,16 +85,16 @@ fun CourseDetailsScreen(navController: NavController, screenModel: CourseDetails
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            text = screenModel?.description ?: "",
+            text = screenModel.description,
             color = TextPrimary,
             fontFamily = FontFamily(Font(R.font.poppins_regular)),
-            fontSize = 14.sp,
+            fontSize = 16.sp,
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            text = "Kurs davomiyligi: ${screenModel?.duration}"
+            text = "Kurs davomiyligi: ${screenModel.duration}"
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -110,8 +112,8 @@ fun CourseDetailsScreen(navController: NavController, screenModel: CourseDetails
 
             Text(
                 modifier = Modifier.padding(vertical = 10.dp, horizontal = 15.dp),
-                text = screenModel?.price ?: "",
-                fontSize = 13.sp,
+                text = screenModel.price,
+                fontSize = 14.sp,
                 fontFamily = FontFamily(Font(R.font.poppins_regular))
             )
 
@@ -129,10 +131,10 @@ fun CourseDetailsScreen(navController: NavController, screenModel: CourseDetails
         Spacer(modifier = Modifier.height(20.dp))
 
         Text(
-            fontSize = 12.sp,
+            fontSize = 14.sp,
             lineHeight = 20.sp,
             fontFamily = FontFamily(Font(R.font.poppins_regular)),
-            text = screenModel?.description ?: ""
+            text = screenModel.info
         )
     }
 }
