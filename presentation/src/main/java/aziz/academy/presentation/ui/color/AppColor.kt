@@ -15,3 +15,7 @@ val BackgroundColor = Color(0xFFFFFFFF)
 val TextSecondary = Color(0xFF727272)
 val TextPrimary = Color(0xFF343434)
 val TextBold = Color(0xFF000000)
+
+val RankFirst = Color(0xFF6BBDFF)
+val RankSecond = Color(0xFFFFE436)
+val RankThird = Color(0xFFFF9C4E)

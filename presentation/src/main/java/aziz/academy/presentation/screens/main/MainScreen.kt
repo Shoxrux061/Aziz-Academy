@@ -11,6 +11,8 @@ import aziz.academy.presentation.screens.main.blogs.BlogPageEvent
 import aziz.academy.presentation.screens.main.blogs.BlogPageViewModel
 import aziz.academy.presentation.screens.main.home.HomePageEvent
 import aziz.academy.presentation.screens.main.home.HomePageViewModel
+import aziz.academy.presentation.screens.main.rating.RatingPageEvent
+import aziz.academy.presentation.screens.main.rating.RatingPageViewModel
 import aziz.academy.presentation.ui.components.BottomNavHost
 import aziz.academy.presentation.ui.components.MyBottomNavigation
 
@@ -25,9 +27,12 @@ fun MainScreen(
 
     val blogViewModel = hiltViewModel<BlogPageViewModel>()
 
+    val ratingViewModel = hiltViewModel<RatingPageViewModel>()
+
     LaunchedEffect(Unit) {
         homePageViewModel.sendEvent(HomePageEvent.FetchHomeData)
         blogViewModel.sendEvent(BlogPageEvent.FetchBlogData)
+        ratingViewModel.sendEvent(RatingPageEvent.FetchRatingData())
     }
 
     Scaffold(
@@ -43,7 +48,8 @@ fun MainScreen(
             navController = navController,
             homePageViewModel = homePageViewModel,
             blogPageViewModel = blogViewModel,
-            courseDataViewModel = courseDataViewModel
+            courseDataViewModel = courseDataViewModel,
+            ratingPageViewModel = ratingViewModel
         )
     }
 }

@@ -70,7 +70,8 @@ class HomeRepositoryImpl @Inject constructor(private val apiService: HomePageSer
                 if (courseResponse.isSuccessful && carouselResponse.isSuccessful) {
 
 
-                    val courses = courseResponse.body()?.results?.map { it.toDomain() } ?: emptyList()
+                    val courses =
+                        courseResponse.body()?.results?.map { it.toDomain() } ?: emptyList()
                     val carousel = carouselResponse.body()?.map { it.toDomain() } ?: emptyList()
 
                     emit(NetworkResult.Success(HomePageModel(courses, carousel)))

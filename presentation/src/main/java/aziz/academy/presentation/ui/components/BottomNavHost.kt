@@ -19,6 +19,8 @@ import aziz.academy.presentation.screens.main.blogs.BlogPageViewModel
 import aziz.academy.presentation.screens.main.blogs.BlogsPage
 import aziz.academy.presentation.screens.main.home.CoursesPage
 import aziz.academy.presentation.screens.main.home.HomePageViewModel
+import aziz.academy.presentation.screens.main.rating.RatingPage
+import aziz.academy.presentation.screens.main.rating.RatingPageViewModel
 
 @Composable
 fun BottomNavHost(
@@ -26,7 +28,8 @@ fun BottomNavHost(
     paddingValues: PaddingValues,
     homePageViewModel: HomePageViewModel,
     blogPageViewModel: BlogPageViewModel,
-    courseDataViewModel: CourseDataViewModel
+    courseDataViewModel: CourseDataViewModel,
+    ratingPageViewModel: RatingPageViewModel
 ) {
 
     NavHost(
@@ -55,7 +58,7 @@ fun BottomNavHost(
             })
         }
         composable(route = NavRoutes.ITEM_RATING_PAGE) {
-            Text("Rating")
+            RatingPage(navController, ratingPageViewModel)
         }
         composable(route = NavRoutes.ITEM_BLOG_PAGE) {
             BlogsPage(navController, blogPageViewModel)

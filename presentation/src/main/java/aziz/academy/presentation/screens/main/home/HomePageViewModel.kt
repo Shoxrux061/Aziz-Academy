@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import aziz.academy.domain.useCase.HomePageUseCase
 import aziz.academy.presentation.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -32,7 +33,7 @@ class HomePageViewModel @Inject constructor(private val useCase: HomePageUseCase
 
         reducer.sendEvent(HomePageEvent.FetchHomeData)
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 useCase.getHomeData().collect { result ->
                     sendEvent(HomePageEvent.HomeDataLoaded(result.data))
